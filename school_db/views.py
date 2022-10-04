@@ -1,3 +1,4 @@
+from unicodedata import name
 from django.shortcuts import render
 from django.db.models import Count
 from django.core.exceptions import ObjectDoesNotExist
@@ -147,6 +148,16 @@ SELECT `school_db_instructor`.`id`,
 # Print the instructors name and courses that he belongs to in the terminal
 # (Do not hard code his name in the print)
 def problem_three(request):
+    # instructor_course = Course.objects.get(instructor_id=2)
+    instructor = Instructor.objects.get(id=2)
+    courses = Course.objects.filter(instructor_id=2)
+
+
+
+
+    print(f'Instructor name: {instructor.first_name} {instructor.last_name}\nCourses: ')
+    for course in courses:
+      print(f' - {course.name}')
 
     return complete(request)
 
